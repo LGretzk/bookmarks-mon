@@ -7,13 +7,12 @@ describe Bookmarks do
     end 
 
     it 'returns a list of bookmarks as an array' do 
-      Bookmarks.add('http://www.makersacademy.com/')
-      Bookmarks.add('http://www.google.com/')
+      Bookmarks.add('http://www.makersacademy.com/', 'Makers')
+      Bookmarks.add('http://www.google.com/', 'Google')
       
       bookmarks = Bookmarks.all
-      
-      expect(bookmarks).to include('http://www.google.com/')
-      expect(bookmarks).to include('http://www.makersacademy.com/')
+      #expect(bookmarks[1]['url']).to eq('http://www.google.com/')
+      expect(bookmarks[1]['title']).to eq('Google')
     end
   end 
 
@@ -21,13 +20,14 @@ describe Bookmarks do
     it 'responds to two arguments' do
       expect(Bookmarks).to respond_to(:add).with(2).arguments
     end
+
     it 'adds title and url' do 
       title = "luiza"
       url = "www.luiza.com"
       Bookmarks.add(url, title)
-      variable = Bookmarks.all[0]
-      expect(variable).to eq(title)
-      expect(Bookmarks.all).to include(url)
+      bookmark = Bookmarks.all.first
+      expect(bookmark['title']).to eq(title)
+      expect(bookmark['url']).to eq(url)
     end
     
   end

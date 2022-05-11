@@ -4,7 +4,8 @@ feature "add bookmark" do
     visit("/bookmarks")
     click_link("Add bookmark")
     fill_in :new_url, with: "http://www.luiza.com"
+    fill_in :title, with: 'Luiza'
     click_button("Submit")
-    expect(page).to have_content "http://www.luiza.com"
+    expect(page).to have_content "Luiza"
   end
 end
