@@ -5,7 +5,7 @@ feature 'displays bookmarks' do
     Bookmarks.add('http://www.google.com/', 'Google')
 
     visit("/bookmarks")
-    expect(page).to have_content "Makers"
-    expect(page).to have_content "Destroy"
+    expect(page).to have_link('Makers', href: 'http://www.makersacademy.com/') 
+    expect(page).to have_link("Destroy", href: 'http://www.destroyallsoftware.com/')
   end 
 end

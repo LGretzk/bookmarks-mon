@@ -1,12 +1,10 @@
-CREATE TABLE bookmarks(id SERIAL PRIMARY KEY, url VARCHAR(60), title VARCHAR(30));
+CREATE TABLE bookmarks(id SERIAL PRIMARY KEY, url VARCHAR(60));
 
 INSERT INTO bookmarks
 VALUES ('1', 'http://www.makersacademy.com/'),
   ('2', 'http://www.askjeeves.com/'),
   ('3', 'http://www.twitter.com/'),
   ('4', 'http://www.google.com/');
-
-
 
 
 -- SELECT * FROM bookmarks;

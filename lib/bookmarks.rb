@@ -10,7 +10,9 @@ class Bookmarks
     end
 
       result = connection.exec("SELECT * FROM bookmarks;")
-      result.map { |bookmark| bookmark } #bookmark = {"id"=>"1", "url"=>"http://makers.tech"}
+      result.map { |bookmark| 
+        Bookmarks.new(id: bookmark['id'], url: bookmark['url'], title: bookmark['title'])
+      } #bookmark = {"id"=>"1", "url"=>"http://makers.tech"}
   
     end
 
@@ -21,6 +23,7 @@ class Bookmarks
       connection = PG.connect(dbname: 'bookmark_manager')
     end
 
-    connection.exec("INSERT INTO bookmarks (url, title) VALUES ('#{url}', '#{title}');")
+    connection.exec("INSERT INTO bookmarks (url, title) VALUES ('#{url}', '#{title}') 
+      RETURNING id, url, title;")
   end
 end 
