@@ -32,6 +32,14 @@
           null,
           null,
           null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
           null,
           null,
           null,
@@ -94,8 +102,28 @@
           null,
           null
         ]
+      },
+      "/Users/luiza/projects/bookmarks/spec/features/updating_a_bookmark_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1652391955
+    "timestamp": 1652433101
   }
 }

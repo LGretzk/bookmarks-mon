@@ -27,6 +27,14 @@ describe Bookmarks do
     end
   end
 
+  describe '#delete' do
+    it 'deletes the bookmark' do
+      bookmark = Bookmarks.add('http://www.makersacademy.com/', 'Makers')
+      Bookmarks.delete(bookmark.id)
+      expect(Bookmarks.all.length).to eq 0
+    end
+  end
+
 end
  
 
