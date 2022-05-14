@@ -23,4 +23,5 @@ group :development, :test, :deployment do
   gem 'rack'
   gem 'launchy'
   gem 'pg'
+  gem 'sinatra-flash'
 end

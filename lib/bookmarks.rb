@@ -1,5 +1,6 @@
-#require 'pg'
+require 'pg'
 require_relative 'database_connection'
+require 'uri'
 
 class Bookmarks 
 
@@ -21,17 +22,8 @@ class Bookmarks
   end
 
   def self.add(url, title)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      connection = PG.connect(dbname: 'bookmark_manager')
-    end
-
-    # Before exec_params
-    # result = connection.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}') RETURNING id, url, title;")
-    # After
-    result = connection.exec_params("INSERT INTO bookmarks (url, title) VALUES($1, $2) RETURNING id, title, url;", [url, title])
-
+    return false unless is_url?(url)
+    result = DatabaseConnection.query("INSERT INTO bookmarks (url, title) VALUES($1, $2) RETURNING id, title, url;", [url, title])
     Bookmarks.new(result[0]['id'], result[0]['url'], result[0]['title'])
   end
 
@@ -68,6 +60,12 @@ class Bookmarks
 
     result = connection.exec_params("SELECT * FROM bookmarks WHERE id=$1;", [id])
     Bookmarks.new(result[0]['id'], result[0]['url'], result[0]['title'])
+  end
+
+  private
+
+  def self.is_url?(url)
+    url =~ /\A#{URI::regexp(['http', 'https'])}\z/
   end
 
 end 

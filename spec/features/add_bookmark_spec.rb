@@ -7,4 +7,13 @@ feature "add bookmark" do
     click_button("Submit")
     expect(page).to have_link("Luiza", href: 'http://www.luiza.com')
   end
+
+  scenario "checks if the bookmark is valid" do
+    visit("/bookmarks/add")
+    fill_in :new_url, with: 'not a real bookmark'
+    fill_in :title, with: 'Google'
+    click_button("Submit")
+    expect(page).to have_content "You must submit a valid URL."
+    expect(page).not_to have_content 'not a real bookmark'
+  end
 end

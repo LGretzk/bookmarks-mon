@@ -20,10 +20,15 @@ describe Bookmarks do
   describe '#add' do
     it 'adds title and url' do 
       title = "luiza"
-      url = "www.luiza.com"
+      url = "http://www.luiza.com/"
       bookmark = Bookmarks.add(url, title)
       expect(bookmark.title).to eq(title)
       expect(bookmark.url).to eq(url)
+    end
+
+    it 'does not add a new bookmark if the URL is not valid' do
+      Bookmarks.add('not a real bookmark', 'not a real bookmark')
+      expect(Bookmarks.all).to be_empty
     end
   end
 
