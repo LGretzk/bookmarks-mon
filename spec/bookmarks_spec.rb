@@ -8,10 +8,10 @@ describe Bookmarks do
       Bookmarks.add('http://www.google.com/', 'Google')
 
       #persisted_data = PG.connect(dbname: 'bookmark_manager_test').query("SELECT * FROM bookmarks WHERE id=#{bookmark.id};")
-      persisted_data = persisted_data(bookmark.id)
+      persisted_data = persisted_data('bookmarks', bookmark.id)
 
       expect(bookmark).to be_a Bookmarks
-      expect(bookmark.id).to eq persisted_data['id']
+      expect(bookmark.id).to eq persisted_data.first['id']
       expect(bookmark.title).to eq 'Makers'
       expect(bookmark.url).to eq 'http://www.makersacademy.com/'
     end
@@ -61,6 +61,18 @@ describe Bookmarks do
       expect(result.id).to eq bookmark.id
       expect(result.title).to eq 'Makers'
       expect(result.url).to eq 'http://www.makersacademy.com/'
+    end
+  end
+
+  describe '#comments' do
+    it 'returns a list of comments of the bookmark' do
+      bookmark = Bookmarks.add('http://www.makersacademy.com/', 'Makers')
+      DatabaseConnection.query(
+        "INSERT INTO comments (id, text, bookmark_id) VALUES(1, 'Learn to code', $1)",
+        [bookmark.id]
+      )
+      comment = bookmark.comments.first
+      expect(comment['text']).to eq 'Learn to code'
     end
   end
 

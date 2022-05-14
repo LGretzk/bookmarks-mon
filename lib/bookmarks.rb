@@ -62,6 +62,13 @@ class Bookmarks
     Bookmarks.new(result[0]['id'], result[0]['url'], result[0]['title'])
   end
 
+  def comments
+    DatabaseConnection.query(
+      "SELECT * FROM comments WHERE bookmark_id=$1;",
+      [id]
+    )
+  end
+
   private
 
   def self.is_url?(url)
