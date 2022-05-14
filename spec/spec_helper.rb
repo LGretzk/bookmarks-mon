@@ -15,6 +15,7 @@ require 'simplecov'
 require 'simplecov-console'
 #require 'features/web_helpers'
 require_relative './setup_test_database'
+require_relative '../database_connection_setup'
 
 # Tell Capybara to talk to RPSGame
 Capybara.app = BookmarkManager

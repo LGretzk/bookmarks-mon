@@ -88,6 +88,39 @@
           null
         ]
       },
+      "/Users/luiza/projects/bookmarks/spec/database_connection_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/luiza/projects/bookmarks/spec/features/add_bookmark_spec.rb": {
         "lines": [
           1,
@@ -148,6 +181,6 @@
         ]
       }
     },
-    "timestamp": 1652436698
+    "timestamp": 1652515498
   }
 }

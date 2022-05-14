@@ -1,4 +1,5 @@
-require 'pg'
+#require 'pg'
+require_relative 'database_connection'
 
 class Bookmarks 
 
@@ -11,13 +12,7 @@ class Bookmarks
   end
 
   def self.all
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      connection = PG.connect(dbname: 'bookmark_manager')
-    end
-
-      result = connection.exec("SELECT * FROM bookmarks;") 
+      result = DatabaseConnection.query("SELECT * FROM bookmarks;") 
       # result = #<PG::Result:0x0000000132eadd18 status=PGRES_TUPLES_OK ntuples=1 nfields=3 cmd_tuples=1>
       result.map { |bookmark| 
         # bookmark = {"id"=>"375", "url"=>"http://www.makersacademy.com/", "title"=>"Makers"}
